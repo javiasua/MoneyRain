@@ -1,0 +1,78 @@
+body {
+    padding: 0;
+    text-align: center;
+    background: url(./images/introBackground.jpg) 0 0 no-repeat;
+    background-size: cover;
+  }
+  
+  /* .introBackground {
+    width: 100%;
+    height: 565px;
+    background-position: center;
+  } */
+  
+  .game-intro{
+    position: absolute;
+    margin-left: 33%;
+    margin-top: 20%;
+  }
+  
+  #inital-text {
+    font-size: 20px;
+    font-family: "DIN Alternate Bold";
+    background-color: #9aa6d0;
+    color: #fff;
+    padding: 20px 10px;
+    border: 0;
+    box-shadow: 0;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  
+  #start-button {
+    top: 50%;
+    font-size: 20px;
+    font-family: "DIN Alternate Bold";
+    background-color: #e6755d;
+    padding: 20px 40px;
+    border: 0;
+    box-shadow: 0;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  a {
+    color: #fff;
+  }
+  
+  #tryAgain-button {
+    top: 50%;
+    font-size: 20px;
+    font-family: "DIN Alternate Bold";
+    background-color: #e6755d;
+    color: #fff;
+    padding: 20px 40px;
+    border: 0;
+    box-shadow: 0;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+
+  #lost {
+    font-size: 20px;
+    font-family: "DIN Alternate Bold";
+    background-color: #9aa6d0;
+    color: #fff;
+    padding: 20px 10px;
+    border: 0;
+    box-shadow: 0;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+
+  .game-over{
+    position: absolute;
+    margin-left: 43%;
+    margin-top: 20%;
+  }
