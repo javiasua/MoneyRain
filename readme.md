@@ -1,8 +1,8 @@
 # Project's name
-GET RICH OR DIE TRYING
+MONEY RAIN
 
 ## Description
-This is a game where te player controls the empty money bag and tries to get as much money as possible. Money bags will be falling from the sky. However since money doesnt come easy, bombs will be falling from the sky too. Player will need to dodge bombs whilst getting money bags. The game ends when 3 bombs hit the empty money bag (player). The player will be able to shoot bombs however if any bullet hits money it will turn it into a bomb. Ocassionaly some lives will also fall from the sky. A score is calculated based on the total amount of money the player manages to get.
+This is a game where te player controls the empty money bag and tries to get as much money as possible. Money bags will be falling from the sky. However since money doesnt come easy, bombs will be falling from the sky too. Player will need to dodge bombs and thiefs whilst getting money bags. The game ends when 3 bombs hit the empty money bag (player). Thiefs will steal money from the bag .. Ocassionaly some lives will also fall from the sky. A score is calculated based on the total amount of money the player manages to get.
 
 
 
@@ -94,8 +94,8 @@ fallinObject-moveDown
 
 ### Git
 URls for the project repo and deploy
-[Link Repo](http://github.com)
-[Link Deploy](http://github.com)
+[Link Repo](https://github.com/javiasua/MoneyRain.git)
+[Link Deploy](https://javiasua.github.io/MoneyRain/)
 
 
 ### Slides
