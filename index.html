@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="http://allfont.es/allfont.css?fonts=comic-sans-ms" rel="stylesheet" type="text/css" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+  <link href="http://allfont.es/allfont.css?fonts=comic-sans-ms" rel="stylesheet" type="text/css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>MoneyRain</title>
 </head>
 <body>
-    <h1 id="main"> MONEY RAIN</h1>
-    <canvas  id='myCanvas' width="600px" height="700px" style='border:2px solid black'></canvas>
-    <script src="game.js"></script>
+  <h1 id="intro-heading"> MONEY RAIN</h1>
+  <div class="row">
+    <div class="column">
+      <img src="images/gold-coins.png" alt="thief" style="width:30%">
+    </div>
+    <div class=" column">
+      <button id="start"><a href="game.html">START GAME</a></button>
+        <p id= "description">Use the arrows to control your bag and try to gain as much money as possible! But be careful thiefs and bombs will try to stop you!</p>
+    </div>
+    <div class="column">
+      <img src="images/gold-coins.png" alt="thief" style="width:30%">
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <img src="images/taxes.png" alt="thief" style="width:30%">
+    </div>
+    <div class="column">
+      <img src="images/basket.png" alt="gold" style="width:30%">
+    </div>
+    <div class="column">
+      <img src="images/bomb1.png" alt="bomb" style="width:30%">
+    </div>
+  </div>
+  <form >
+    <label for="fname">First name:</label>
+    <input type="text" class="fname"  id="fname1" ><br><br>
+    <input type="button" onclick="formSubmit()" value="Send form data!">
+  </form>
+  <script src="intro.js"></script>
+  
 </body>
-</html> 
+</html>

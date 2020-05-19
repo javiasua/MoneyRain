@@ -20,10 +20,14 @@ taxes.src = 'images/taxes.png'
 let level = 0;
 let checker = 10;
 let emptyBagSpeed = 50
-let score = 0;
+window.score = 0;
 let lives = 3;
 let increasebombSpeed = 1;
 let moneyBagSpeed = 2;
+var bombSound = new Audio('sounds/bombSound.mp3');
+var goldSound = new Audio('sounds/goldSound.mp3');
+var gameOverSound = new Audio('sounds/gameover.mp3');
+
 
 
 var emptyBag = {
@@ -76,11 +80,12 @@ class fallingObject{
 
     checkCollision(){
 
-        if(this.y+30>canvas.height-emptyBag.height && this.y+90<canvas.height+30 && this.x+this.width/2>emptyBag.x && this.x<emptyBag.x+emptyBag.width){
+        if(this.y+10>canvas.height-emptyBag.height && this.y+90<canvas.height+30 && this.x+this.width/2>emptyBag.x && this.x<emptyBag.x+emptyBag.width){
             this.y += NaN;
 
             if(this.type == 'money'){
                 score++;
+                goldSound.play();
             }
 
             if(this.type=='bomb'){
@@ -88,17 +93,22 @@ class fallingObject{
                 switch(lives){
                     case 3:
                         ctx.clearRect(370,15,50,40)
+                        bombSound.play(); 
                         lives--
                         break;
                     case 2:
                         ctx.clearRect(430,15,50,40)
                         lives--;
+                        bombSound.play(); 
                         break;
                     case 1:
                         ctx.clearRect(490,15,50,40)
                         lives--
+                        bombSound.play(); 
                         break
                     case 0:
+                        gameOverSound.play();
+                        window.localStorage.setItem('Score',window.score)
                         document.location.href = "gameOver.html";
                         break;
                 }
@@ -118,7 +128,7 @@ function updateSpeeds(){
 
     if(score>checker){
 
-        if(moneyBagSpeed<10){
+        if(moneyBagSpeed<7){
             checker+=10;
             level++;
             moneyBagSpeed +=1;
@@ -257,6 +267,8 @@ function drawScoreBoard(){
     ctx.font = '50px Arial'
     ctx.fillText('Score : '+score*50,20,40)
     //ctx.drawImage(goldScore,230,10,40,40)
+    console.log('score is '+score)
+    
 }
 
 function drawExplosion(x,y,width,height,bombBool){
@@ -267,8 +279,6 @@ function updateFallingObjects(){
 
     for(let i =0; i<fallingObjectArr.length;i++){
         drawFallinObjects(fallingObjectArr[i]);
-        //let explosionY = canvas.height-emptyBag.height;
-        //drawExplosion(fallingObjectArr[i].x,explosionY,fallingObjectArr[i].width,fallingObjectArr[i].height,fallingObjectArr[i].explosionBool)
         fallingObjectArr[i].moveDown();
         fallingObjectArr[i].checkCollision();
 
@@ -319,7 +329,6 @@ function updateFallingObjects(){
         drawBackground()
         drawLives()
         drawEmptyMoneyBag(emptyBag);
-        drawScoreBoard();
         updateSpeeds()
         updateFallingObjects()
         drawTaxes(taxesArr)
@@ -332,7 +341,6 @@ function updateFallingObjects(){
 
  let interval = setInterval(function(){
     draw();
-    console.log(scoreObj)
 },20) 
                    
 
