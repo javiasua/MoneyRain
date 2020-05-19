@@ -192,8 +192,8 @@ class tax {
     constructor(){
         this.x = Math.floor(Math.random()*500)
         this.y = 10,
-        this.width = 120,
-        this.height = 120,
+        this.width = 90,
+        this.height = 90,
         this.bool = true;
     }
 
@@ -264,7 +264,8 @@ function drawLives(){
 }
 
 function drawScoreBoard(){
-    ctx.font = '50px Arial'
+    ctx.font = '25px Monaco'
+    ctx.fillStyle = 'black'
     ctx.fillText('Score : '+score*50,20,40)
     //ctx.drawImage(goldScore,230,10,40,40)
     console.log('score is '+score)
