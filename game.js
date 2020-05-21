@@ -23,7 +23,11 @@ let emptyBagSpeed = 50
 window.score = 0;
 let lives = 3;
 let increasebombSpeed = 1;
-let moneyBagSpeed = 2;
+let moneyBagSpeed = 3;
+let taxBool = false;
+let counterForTaxBool = 0;
+let explosionBool = false;
+let counterForExplBool = 0;
 var bombSound = new Audio('sounds/bombSound.mp3');
 var goldSound = new Audio('sounds/goldSound.mp3');
 var gameOverSound = new Audio('sounds/gameover.mp3');
@@ -89,7 +93,7 @@ class fallingObject{
             }
 
             if(this.type=='bomb'){
-                this.explosionBool = true;
+                explosionBool = true;
                 switch(lives){
                     case 3:
                         ctx.clearRect(370,15,50,40)
@@ -129,7 +133,7 @@ function updateSpeeds(){
     if(score>checker){
 
         if(moneyBagSpeed<7){
-            checker+=10;
+            checker+=15;
             level++;
             moneyBagSpeed +=1;
             emptyBagSpeed +=5;
@@ -192,8 +196,8 @@ class tax {
     constructor(){
         this.x = Math.floor(Math.random()*500)
         this.y = 10,
-        this.width = 90,
-        this.height = 90,
+        this.width = 65,
+        this.height = 65,
         this.bool = true;
     }
 
@@ -206,6 +210,8 @@ class tax {
         if(this.y+30>canvas.height-emptyBag.height && this.y+90<canvas.height+30 && this.x+this.width/2>emptyBag.x && this.x<emptyBag.x+emptyBag.width){
             this.y = NaN;
             score = score -10;
+            taxBool = true;
+
         }
     }
 }
@@ -215,7 +221,7 @@ var taxesArr = [tax1]
 
 function drawTaxes(taxesArr){
 
-    if(level>0){
+    if(level>1){
 
         for(let i = 0;i<taxesArr.length;i++){
             ctx.drawImage(taxes,taxesArr[i].x,taxesArr[i].y,taxesArr[i].width,taxesArr[i].height)
@@ -225,7 +231,7 @@ function drawTaxes(taxesArr){
             if(taxesArr[i].y>200 && taxesArr[i].bool){
                 taxesArr[i].bool = false;
 
-                if(Math.round(Math.random()*9)<2){
+                if(Math.round(Math.random()*7)<2){
                     taxes1 = new tax();
                     taxesArr.push(taxes1);
 
@@ -267,7 +273,6 @@ function drawScoreBoard(){
     ctx.font = '25px Monaco'
     ctx.fillStyle = 'black'
     ctx.fillText('Score : '+score*50,20,40)
-    //ctx.drawImage(goldScore,230,10,40,40)
     console.log('score is '+score)
     
 }
@@ -309,7 +314,7 @@ function updateFallingObjects(){
         if(fallingObjectArr[i].y > 150  && fallingObjectArr[i].bool && fallingObjectArr[i].type=='live'){
             fallingObjectArr[i].bool = false;
 
-            if(Math.round(Math.random()*10)==2 && lives<3){
+            if(Math.round(Math.random()*15)==2 && lives<3){
                 fallingObject1 = new fallingObject(Math.floor(Math.random()*500),50,50,'live')
                     fallingObjectArr.push(
                         fallingObject1
@@ -334,6 +339,28 @@ function updateFallingObjects(){
         updateFallingObjects()
         drawTaxes(taxesArr)
         drawScoreBoard()
+
+        if(taxBool){
+            ctx.fillStyle = "brown";
+            ctx.font = 'bolder 60px Monaco'
+            ctx.fillText('Score : -500',100,350)
+            counterForTaxBool++
+        }
+
+        if(counterForTaxBool > 50){
+            taxBool= false;
+            counterForTaxBool =0;
+        }
+        if(explosionBool){
+            ctx.drawImage(explosionImage,emptyBag.x,emptyBag.y,80,80)
+            counterForExplBool++
+        }
+        if(counterForExplBool > 40){
+            explosionBool= false;
+            counterForExplBool =0;
+        }
+
+       
     }
     
 
