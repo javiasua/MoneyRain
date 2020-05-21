@@ -133,7 +133,7 @@ function updateSpeeds(){
     if(score>checker){
 
         if(moneyBagSpeed<7){
-            checker+=15;
+            checker+=12;
             level++;
             moneyBagSpeed +=1;
             emptyBagSpeed +=5;
@@ -342,7 +342,7 @@ function updateFallingObjects(){
 
         if(taxBool){
             ctx.fillStyle = "brown";
-            ctx.font = 'bolder 60px Monaco'
+            ctx.font = 'bolder 100px Monaco'
             ctx.fillText('Score : -500',100,350)
             counterForTaxBool++
         }
