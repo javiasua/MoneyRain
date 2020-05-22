@@ -141,7 +141,7 @@ function updateSpeeds(){
             checker+=increaser;
             level++;
             moneyBagSpeed +=1;
-            emptyBagSpeed +=5;
+            emptyBagSpeed +=7;
         }
     }
     if(level == 3){
@@ -373,7 +373,7 @@ function updateFallingObjects(){
      if(drawBool){
         draw();
      }
-     
+
     if(taxBool){
         ctx.fillStyle = "brown";
         ctx.font = 'bolder 47px Monaco'
@@ -381,7 +381,7 @@ function updateFallingObjects(){
         ctx.shadowOffsetY = 3;
         ctx.shadowColor = "rgba(0,0,0,0.3)";
         ctx.shadowBlur = 3;
-        ctx.fillText('PUM! Score : -500!',70,350)
+        ctx.fillText('PUM! Score : -500!',50,350)
         counterForTaxBool++
         drawBool=false;
     }
