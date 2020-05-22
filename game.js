@@ -327,7 +327,7 @@ function updateFallingObjects(){
         if(fallingObjectArr[i].y > 150  && fallingObjectArr[i].bool && fallingObjectArr[i].type=='live'){
             fallingObjectArr[i].bool = false;
 
-            if(Math.round(Math.random()*30)==2 && lives<3){
+            if(Math.round(Math.random()*23)==2 && lives<3){
                 fallingObject1 = new fallingObject(Math.floor(Math.random()*500),50,50,'live')
                     fallingObjectArr.push(
                         fallingObject1
