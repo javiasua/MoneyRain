@@ -95,7 +95,7 @@ fallinObject-moveDown
 ### Git
 URls for the project repo and deploy
 [Link Repo](https://github.com/javiasua/MoneyRain.git)
-[Link Deploy](https://javiasua.github.io/MoneyRain/)
+[Link Deploy](https://javiasua.github.io/MoneyRain/gameOver.html)
 
 
 ### Slides
