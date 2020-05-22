@@ -22,15 +22,20 @@ let checker = 10;
 let emptyBagSpeed = 50
 window.score = 0;
 let lives = 3;
-let increasebombSpeed = 1;
+let increasebombSpeed = 1.5;
+let increaseTaxSpeed = 1.2
 let moneyBagSpeed = 3;
 let taxBool = false;
 let counterForTaxBool = 0;
 let explosionBool = false;
 let counterForExplBool = 0;
+let increaser = 10;
+let scoreScoreboard;
+let drawBool = true;
 var bombSound = new Audio('sounds/bombSound.mp3');
 var goldSound = new Audio('sounds/goldSound.mp3');
 var gameOverSound = new Audio('sounds/gameover.mp3');
+var taxSound = new Audio('sounds/ouch.mp3')
 
 
 
@@ -132,12 +137,15 @@ function updateSpeeds(){
 
     if(score>checker){
 
-        if(moneyBagSpeed<7){
-            checker+=12;
+        if(moneyBagSpeed<10){
+            checker+=increaser;
             level++;
             moneyBagSpeed +=1;
             emptyBagSpeed +=5;
         }
+    }
+    if(level == 3){
+        increaser = 13;
     }
 }
 
@@ -196,13 +204,13 @@ class tax {
     constructor(){
         this.x = Math.floor(Math.random()*500)
         this.y = 10,
-        this.width = 65,
-        this.height = 65,
+        this.width = 70,
+        this.height = 70,
         this.bool = true;
     }
 
     moveDown() {
-        this.y += moneyBagSpeed;
+        this.y += moneyBagSpeed+increaseTaxSpeed;
     }
 
     checkCollision() {
@@ -211,6 +219,7 @@ class tax {
             this.y = NaN;
             score = score -10;
             taxBool = true;
+            taxSound.play(); 
 
         }
     }
@@ -221,7 +230,7 @@ var taxesArr = [tax1]
 
 function drawTaxes(taxesArr){
 
-    if(level>1){
+    if(level>0){
 
         for(let i = 0;i<taxesArr.length;i++){
             ctx.drawImage(taxes,taxesArr[i].x,taxesArr[i].y,taxesArr[i].width,taxesArr[i].height)
@@ -270,8 +279,12 @@ function drawLives(){
 }
 
 function drawScoreBoard(){
-    ctx.font = '25px Monaco'
+    ctx.font = '29px Monaco'
     ctx.fillStyle = 'black'
+    //ctx.shadowOffsetX = 1;
+    //ctx.shadowOffsetY = 1;
+    //ctx.shadowColor = "black";
+    //ctx.shadowBlur = 1;
     ctx.fillText('Score : '+score*50,20,40)
     console.log('score is '+score)
     
@@ -295,7 +308,7 @@ function updateFallingObjects(){
                 fallingObject1
             )
         }
-        if(fallingObjectArr[i].y > 150  && fallingObjectArr[i].bool && fallingObjectArr[i].type=='bomb'){
+        if(fallingObjectArr[i].y > 130  && fallingObjectArr[i].bool && fallingObjectArr[i].type=='bomb'){
             fallingObjectArr[i].bool = false;
 
             if(Math.round(Math.random()*2)==1){
@@ -314,7 +327,7 @@ function updateFallingObjects(){
         if(fallingObjectArr[i].y > 150  && fallingObjectArr[i].bool && fallingObjectArr[i].type=='live'){
             fallingObjectArr[i].bool = false;
 
-            if(Math.round(Math.random()*15)==2 && lives<3){
+            if(Math.round(Math.random()*30)==2 && lives<3){
                 fallingObject1 = new fallingObject(Math.floor(Math.random()*500),50,50,'live')
                     fallingObjectArr.push(
                         fallingObject1
@@ -339,18 +352,6 @@ function updateFallingObjects(){
         updateFallingObjects()
         drawTaxes(taxesArr)
         drawScoreBoard()
-
-        if(taxBool){
-            ctx.fillStyle = "brown";
-            ctx.font = 'bolder 100px Monaco'
-            ctx.fillText('Score : -500',100,350)
-            counterForTaxBool++
-        }
-
-        if(counterForTaxBool > 50){
-            taxBool= false;
-            counterForTaxBool =0;
-        }
         if(explosionBool){
             ctx.drawImage(explosionImage,emptyBag.x,emptyBag.y,80,80)
             counterForExplBool++
@@ -359,6 +360,7 @@ function updateFallingObjects(){
             explosionBool= false;
             counterForExplBool =0;
         }
+        
 
        
     }
@@ -368,7 +370,27 @@ function updateFallingObjects(){
 
 
  let interval = setInterval(function(){
-    draw();
+     if(drawBool){
+        draw();
+     }
+     
+    if(taxBool){
+        ctx.fillStyle = "brown";
+        ctx.font = 'bolder 47px Monaco'
+        ctx.shadowOffsetX = 3;
+        ctx.shadowOffsetY = 3;
+        ctx.shadowColor = "rgba(0,0,0,0.3)";
+        ctx.shadowBlur = 3;
+        ctx.fillText('PUM! Score : -500!',70,350)
+        counterForTaxBool++
+        drawBool=false;
+    }
+
+    if(counterForTaxBool > 110){
+        taxBool= false;
+        drawBool=true;
+        counterForTaxBool =0;
+    }
 },20) 
                    
 
